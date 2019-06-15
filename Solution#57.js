@@ -1,18 +1,25 @@
 // Time : O(n)
 //Space : O(n)
 
-function tenCharString(input) {
+function twoNumberSum(input, answer) {
 
-  let tenString = "";
+  let map = {};
   let output = [];
+  let remaining = null;
+
   for (let i = 0; i < input.length; i++) {
-    tenString += input[i];
-    if (tenString.length === 10) {
-      output.push(tenString);
-      tenString = "";
+
+    if (!map[input[i]]) {
+      remaining = answer - input[i];
+      if (map[remaining]) {
+        output.push([input[i], remaining]);
+      }
+      map[input[i]] = input[i]
     }
   }
-  output.push(tenString);
   return output;
 }
-tenCharString("the quick brown fox jumps over the lazy dog")
+
+let answer = twoNumberSum([-4, -1, 1, 2, 2, 3, 3, 5, 6, 8, 8, 7, 11,2,8], 10);
+
+console.log(answer);
